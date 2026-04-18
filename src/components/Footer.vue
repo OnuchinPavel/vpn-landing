@@ -11,19 +11,11 @@
 </template>
 
 <style scoped>
-.footer {
-  padding: 32px 0;
-  border-top: 1px solid var(--border);
-}
-.footer__inner {
-  display: flex; justify-content: space-between; align-items: center;
-}
-.footer__copy { font-size: 0.78rem; color: var(--text-muted); }
-.footer__links { display: flex; gap: 24px; }
-.footer__links a { font-size: 0.78rem; color: var(--text-muted); transition: color 0.2s; }
-.footer__links a:hover { color: var(--text-primary); }
-
-@media (max-width: 500px) {
-  .footer__inner { flex-direction: column; gap: 12px; text-align: center; }
-}
+.footer { padding: 28px 0; border-top: 1px solid var(--border); }
+.footer__inner { display: flex; justify-content: space-between; align-items: center; }
+.footer__copy { font-size: 0.75rem; color: var(--text-dim); }
+.footer__links { display: flex; gap: 20px; }
+.footer__links a { font-size: 0.75rem; color: var(--text-dim); transition: color 0.2s; }
+.footer__links a:hover { color: var(--text); }
+@media (max-width: 500px) { .footer__inner { flex-direction: column; gap: 10px; text-align: center; } }
 </style>

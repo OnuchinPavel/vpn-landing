@@ -1,59 +1,49 @@
 <template>
   <section class="hero section">
     <div class="container">
-      <p class="label anim">White Label VPN</p>
+      <p class="label anim d1">· Готовый VPN-бизнес под ключ</p>
       <h1 class="hero__title anim d1">
-        Запустите свой VPN-сервис<br>под собственным брендом
+        Ваш VPN в сторах<br>
+        за 4–8 недель.<br>
+        <span class="hero__dim">От 300 000 ₽.</span>
       </h1>
       <p class="hero__desc anim d2">
-        Полный комплект приложений для всех платформ с монетизацией
-        через App Store, Google Play, криптовалюту и рубли. Запуск за 30 дней.
+        Соберём под ваш бренд два мобильных приложения (iOS + Android),
+        бэкенд с биллингом, Telegram-бот — и перевезём вашу базу с текущего
+        бота без потерь.
       </p>
-      <div class="hero__actions anim d3">
-        <a href="https://t.me/maratiksci" target="_blank" class="btn btn-primary">Связаться</a>
-        <a href="#platforms" class="btn btn-ghost">Подробнее</a>
+      <div class="hero__meta anim d3">
+        <div class="hero__meta-item"><strong>2</strong> приложения</div>
+        <div class="hero__meta-item"><strong>5</strong> витрин</div>
+        <div class="hero__meta-item"><strong>1</strong> бэкенд</div>
+        <div class="hero__meta-item"><strong>0</strong> потерь при миграции</div>
       </div>
-      <div class="hero__stats anim d4">
-        <div class="hero__stat" v-for="s in stats" :key="s.l">
-          <span class="hero__stat-val">{{ s.v }}</span>
-          <span class="hero__stat-lbl">{{ s.l }}</span>
-        </div>
+      <div class="hero__actions anim d4">
+        <a href="#pricing" class="btn btn-w">Посмотреть тарифы</a>
+        <a href="#solution" class="btn btn-o">Что входит</a>
       </div>
     </div>
   </section>
 </template>
 
-<script setup>
-const stats = [
-  { v: '7+', l: 'Платформ' },
-  { v: '4', l: 'Способа оплаты' },
-  { v: '30', l: 'Дней на запуск' },
-  { v: '100%', l: 'Ваш бренд' },
-]
-</script>
-
 <style scoped>
 .hero { padding-top: 160px; padding-bottom: 40px; min-height: 100vh; display: flex; align-items: center; }
 .hero__title {
-  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-  font-weight: 600; line-height: 1.12; letter-spacing: -0.03em;
-  margin-bottom: 24px; max-width: 700px;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800; line-height: 1.1; letter-spacing: -0.03em;
+  margin-bottom: 24px; max-width: 750px;
 }
+.hero__dim { color: var(--text-dim); }
 .hero__desc {
-  font-size: 1.05rem; color: var(--text-secondary); line-height: 1.75;
-  max-width: 500px; margin-bottom: 36px;
+  font-size: 1.05rem; color: var(--text-sec); line-height: 1.75;
+  max-width: 560px; margin-bottom: 32px;
 }
-.hero__actions { display: flex; gap: 12px; margin-bottom: 80px; }
-.hero__stats {
-  display: flex; gap: 48px;
-  padding-top: 40px; border-top: 1px solid var(--border);
+.hero__meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+.hero__meta-item {
+  font-size: 0.78rem; color: var(--text-sec);
+  padding: 8px 14px; border: 1px solid var(--border); border-radius: 100px;
 }
-.hero__stat { display: flex; flex-direction: column; }
-.hero__stat-val { font-size: 1.8rem; font-weight: 600; }
-.hero__stat-lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
-
-@media (max-width: 768px) {
-  .hero { padding-top: 120px; min-height: auto; }
-  .hero__stats { gap: 24px; flex-wrap: wrap; }
-}
+.hero__meta-item strong { color: var(--text); font-weight: 600; margin-right: 4px; }
+.hero__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+@media (max-width: 600px) { .hero { padding-top: 120px; } }
 </style>
