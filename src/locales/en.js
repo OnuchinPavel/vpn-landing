@@ -78,6 +78,20 @@ export default {
     ],
     cta: 'See pricing',
   },
+  delivery: {
+    label: 'Process',
+    title: 'How we ship you live',
+    sub: 'Two parallel tracks: the project calendar and the migration of your users. Nothing falls through.',
+    timelineTitle: 'Project calendar',
+    migrationTitle: 'User migration',
+  },
+  questions: {
+    label: 'Questions',
+    title: 'Fears and answers',
+    sub: 'First the five main objections, then the rest. If you’re still wondering — just ask.',
+    objectionsTitle: 'Five fears — and the reality behind them',
+    faqTitle: 'Other questions',
+  },
   migration: {
     label: 'Migration',
     title: 'How your users come across',
