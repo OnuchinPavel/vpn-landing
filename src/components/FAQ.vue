@@ -36,4 +36,9 @@ const { t } = useI18n()
 .faq__q::after { content: '+'; color: var(--text-dim); font-size: 1.3rem; font-weight: 400; transition: transform 0.2s; line-height: 1; }
 .faq__item[open] .faq__q::after { transform: rotate(45deg); }
 .faq__a { padding: 0 24px 22px; font-size: 0.88rem; color: var(--text-sec); line-height: 1.7; margin: 0; }
+
+@media (max-width: 500px) {
+  .faq__q { padding: 18px 20px; font-size: 0.9rem; gap: 12px; }
+  .faq__a { padding: 0 20px 20px; font-size: 0.85rem; }
+}
 </style>

@@ -47,5 +47,9 @@ const { t } = useI18n()
   background: rgba(34,197,94,0.06);
 }
 
-@media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+  .sol { padding: 22px; }
+  .sol__desc { font-size: 0.82rem; }
+}
 </style>

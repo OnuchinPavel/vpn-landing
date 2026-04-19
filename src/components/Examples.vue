@@ -47,8 +47,12 @@ const { t } = useI18n()
 .ex__link { font-size: 0.82rem; color: var(--text); font-weight: 500; }
 
 @media (max-width: 700px) {
-  .stats { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .stats { grid-template-columns: repeat(2, 1fr); gap: 16px 20px; padding: 20px; }
   .stat { border-left: none; padding-left: 0; padding: 0; }
 }
 @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 420px) {
+  .stat__val { font-size: 1.3rem; }
+  .stat__lbl { font-size: 0.64rem; }
+}
 </style>

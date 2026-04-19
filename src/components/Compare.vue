@@ -39,8 +39,9 @@ const { t } = useI18n()
 
 @media (max-width: 700px) {
   .cmp__header { display: none; }
-  .cmp__row { grid-template-columns: 1fr; gap: 6px; padding: 16px 20px; }
+  .cmp__row { grid-template-columns: 1fr; gap: 6px; padding: 16px 18px; }
   .cmp__key { font-weight: 600; color: var(--text); font-size: 0.9rem; margin-bottom: 2px; }
-  .cmp__val::before { content: attr(data-prefix) ': '; font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-right: 6px; }
+  .cmp__val { font-size: 0.86rem; }
+  .cmp__val::before { content: attr(data-prefix) ': '; font-family: var(--mono); font-size: 0.66rem; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-right: 6px; }
 }
 </style>

@@ -61,4 +61,11 @@ const { t } = useI18n()
 .note :deep(em) { font-style: normal; color: var(--text); font-weight: 500; }
 
 @media (max-width: 900px) { .grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
+@media (max-width: 500px) {
+  .tier { padding: 26px 22px; gap: 14px; }
+  .tier__name { font-size: 1.05rem; }
+  .tier__amount { font-size: 1.7rem; }
+  .tier__list li { font-size: 0.82rem; }
+  .note { padding: 16px 18px; font-size: 0.82rem; }
+}
 </style>

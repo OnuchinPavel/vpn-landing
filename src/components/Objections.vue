@@ -52,4 +52,9 @@ const { t } = useI18n()
   .obj { grid-template-columns: 1fr; }
   .obj__q { border-right: none; border-bottom: 1px solid var(--border); }
 }
+@media (max-width: 500px) {
+  .obj__q, .obj__a { padding: 18px 20px; }
+  .obj__q p { font-size: 0.88rem; }
+  .obj__a p { font-size: 0.85rem; }
+}
 </style>

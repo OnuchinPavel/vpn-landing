@@ -27,10 +27,10 @@ const { t } = useI18n()
 </template>
 
 <style scoped>
-.hero { padding-top: 160px; padding-bottom: 60px; min-height: 100vh; display: flex; align-items: center; }
+.hero { padding-top: 140px; padding-bottom: 48px; min-height: 100vh; display: flex; align-items: center; }
 .hero__title {
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  font-weight: 800; line-height: 1.1; letter-spacing: -0.03em;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800; line-height: 1.08; letter-spacing: -0.03em;
   margin-bottom: 20px; max-width: 780px;
 }
 .hero__proof {
@@ -57,5 +57,15 @@ const { t } = useI18n()
 }
 .hero__meta-item strong { color: var(--text); font-weight: 600; margin-right: 4px; }
 .hero__actions { display: flex; gap: 10px; flex-wrap: wrap; }
-@media (max-width: 600px) { .hero { padding-top: 120px; } }
+@media (max-width: 600px) {
+  .hero { padding-top: 110px; padding-bottom: 32px; min-height: auto; }
+  .hero__title { margin-bottom: 16px; }
+  .hero__proof { font-size: 0.88rem; padding: 10px 14px; margin-bottom: 16px; }
+  .hero__desc { font-size: 0.96rem; margin-bottom: 22px; }
+  .hero__tldr { margin-bottom: 24px; }
+  .hero__tldr li { font-size: 0.86rem; }
+  .hero__meta { margin-bottom: 24px; }
+  .hero__meta-item { font-size: 0.74rem; padding: 7px 12px; }
+  .hero__actions .btn { flex: 1 1 auto; min-width: 0; font-size: 0.82rem; padding: 12px 16px; white-space: normal; text-align: center; line-height: 1.2; }
+}
 </style>

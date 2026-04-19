@@ -91,4 +91,8 @@ function submit() {
   .body { grid-template-columns: 1fr; }
   .form__row { grid-template-columns: 1fr; }
 }
+@media (max-width: 500px) {
+  .form { padding: 22px; }
+  .form__submit { width: 100%; align-self: stretch; }
+}
 </style>

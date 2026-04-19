@@ -68,6 +68,10 @@ const { t } = useI18n()
 
 @media (max-width: 600px) {
   .grid { grid-template-columns: 1fr; }
-  .proof { flex-direction: column; gap: 10px; }
+  .proof { flex-direction: column; gap: 10px; padding: 18px 20px; }
+  .metric { padding: 22px; }
+  .metric__flow { gap: 10px; }
+  .metric__val { font-size: 0.88rem; }
+  .metric__note { font-size: 0.8rem; }
 }
 </style>

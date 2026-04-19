@@ -47,4 +47,11 @@ const { t } = useI18n()
   padding: 10px 16px; font-size: 0.82rem; color: var(--text-sec);
   border: 1px solid var(--border); border-radius: var(--radius);
 }
+
+@media (max-width: 500px) {
+  .plat__block { padding: 22px; }
+  .plat__tag { font-size: 1.15rem; }
+  .plat__stack { font-size: 0.68rem; }
+  .store { padding: 8px 12px; font-size: 0.78rem; }
+}
 </style>

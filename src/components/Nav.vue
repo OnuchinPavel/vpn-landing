@@ -41,20 +41,22 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 .nav__link:hover { color:var(--text) }
 .nav__lang {
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em;
-  padding: 5px 10px; background: none; color: var(--text-sec);
+  padding: 6px 12px; min-height: 30px; background: none; color: var(--text-sec);
   border: 1px solid var(--border); border-radius: 100px;
   cursor: pointer; transition: all 0.2s;
 }
 .nav__lang:hover { border-color: var(--border-hover); color: var(--text); }
-.nav__burger { display:none;background:none;border:none;cursor:pointer;width:22px;height:18px;position:relative }
-.nav__burger span { position:absolute;left:0;width:100%;height:1.5px;background:var(--text);transition:all .3s }
-.nav__burger span:first-child{top:3px} .nav__burger span:last-child{bottom:3px}
+.nav__burger { display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;padding:13px 11px;position:relative;margin:-13px -11px }
+.nav__burger span { position:absolute;left:11px;right:11px;height:1.5px;background:var(--text);transition:all .3s }
+.nav__burger span:first-child{top:16px} .nav__burger span:last-child{bottom:16px}
 .nav__burger.open span:first-child{top:50%;transform:translateY(-50%) rotate(45deg)}
 .nav__burger.open span:last-child{bottom:50%;transform:translateY(50%) rotate(-45deg)}
 @media(max-width:768px){
   .nav__burger{display:block}
-  .nav__links{position:fixed;inset:0;background:rgba(9,9,11,.97);backdrop-filter:blur(16px);flex-direction:column;justify-content:center;gap:24px;opacity:0;pointer-events:none;transition:opacity .3s}
+  .nav__links{position:fixed;inset:0;background:rgba(9,9,11,.97);backdrop-filter:blur(16px);flex-direction:column;justify-content:center;gap:22px;opacity:0;pointer-events:none;transition:opacity .3s}
   .nav__links.open{opacity:1;pointer-events:all}
-  .nav__link{font-size:1.1rem;color:var(--text-sec)}
+  .nav__link{font-size:1.1rem;color:var(--text-sec);padding:6px 12px}
+  .nav__lang{font-size:0.88rem;padding:10px 20px;min-height:44px}
+  .nav__links .btn{font-size:0.95rem;padding:14px 32px}
 }
 </style>

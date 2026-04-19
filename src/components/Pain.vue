@@ -37,5 +37,9 @@ const { t } = useI18n()
 .pain__title { font-size: 1rem; font-weight: 600; }
 .pain__desc { font-size: 0.84rem; color: var(--text-sec); line-height: 1.6; }
 
-@media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+  .pain { padding: 22px; }
+  .pain__desc { font-size: 0.82rem; }
+}
 </style>
