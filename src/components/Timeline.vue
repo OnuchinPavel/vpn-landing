@@ -1,11 +1,16 @@
+<script setup>
+import { useI18n } from '../composables/useI18n'
+const { t } = useI18n()
+</script>
+
 <template>
   <section id="timeline" class="section" style="background: var(--bg-alt);">
     <div class="container">
-      <p class="label">Таймлайн</p>
-      <h2 class="title">Путь от брифа до первой покупки</h2>
-      <p class="sub" style="margin-bottom: 48px;">4–8 недель. Без «сейчас оценим и перезвоним».</p>
+      <p class="label">{{ t.timeline.label }}</p>
+      <h2 class="title">{{ t.timeline.title }}</h2>
+      <p class="sub" style="margin-bottom: 48px;">{{ t.timeline.sub }}</p>
       <div class="tl">
-        <div v-for="(m, i) in milestones" :key="m.week" class="tl__row anim" :class="'d'+(i+1)">
+        <div v-for="(m, i) in t.timeline.milestones" :key="m.week" class="tl__row anim" :class="'d'+(i+1)">
           <div class="tl__week">{{ m.week }}</div>
           <div class="tl__body">
             <h3 class="tl__title">{{ m.title }}</h3>
@@ -16,15 +21,6 @@
     </div>
   </section>
 </template>
-
-<script setup>
-const milestones = [
-  { week: 'Неделя 1', title: 'Бриф и доступы', desc: 'Согласовываем бренд, получаем домены и брендбук. На вашей стороне — Apple Developer и Google Play аккаунты (либо оформляем мы отдельной услугой за 70 000 ₽).' },
-  { week: 'Неделя 2–3', title: 'Сборка и бэкенд', desc: 'Собираем приложения и бэкенд, подключаем ваши VPN-серверы, готовим билды для сторов.' },
-  { week: 'Неделя 4–6', title: 'Ревью и миграция', desc: 'Отправляем в сторы, проходим модерацию, параллельно мигрируем базу. Ваша команда получает первые сборки в тесты.' },
-  { week: 'Неделя 6–8', title: 'Запуск и передача', desc: 'Приложения публикуются, уведомляем пользователей, первые покупки через сторы. Передаём документацию и обучаем команду.' },
-]
-</script>
 
 <style scoped>
 .tl { border-left: 1px solid var(--border); padding-left: 32px; margin-left: 8px; }

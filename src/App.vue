@@ -1,4 +1,5 @@
 <script setup>
+import { useI18n } from './composables/useI18n'
 import Nav from './components/Nav.vue'
 import Hero from './components/Hero.vue'
 import Growth from './components/Growth.vue'
@@ -14,22 +15,26 @@ import Objections from './components/Objections.vue'
 import FAQ from './components/FAQ.vue'
 import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
+const { t } = useI18n()
 </script>
 
 <template>
+  <a href="#content" class="skip-link">{{ t.nav.skipToContent }}</a>
   <Nav />
-  <Hero />
-  <Growth />
-  <Pain />
-  <Solution />
-  <Migration />
-  <Timeline />
-  <Platforms />
-  <Examples />
-  <Pricing />
-  <Compare />
-  <Objections />
-  <FAQ />
-  <Contact />
+  <main id="content">
+    <Hero />
+    <Growth />
+    <Pain />
+    <Solution />
+    <Migration />
+    <Timeline />
+    <Platforms />
+    <Examples />
+    <Pricing />
+    <Compare />
+    <Objections />
+    <FAQ />
+    <Contact />
+  </main>
   <Footer />
 </template>

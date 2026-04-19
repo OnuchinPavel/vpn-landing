@@ -1,34 +1,26 @@
+<script setup>
+import { useI18n } from '../composables/useI18n'
+const { t } = useI18n()
+</script>
+
 <template>
   <section id="solution" class="section">
     <div class="container">
-      <p class="label" style="color: var(--green);">Как растим метрики</p>
-      <h2 class="title">Один пакет — <span style="color: var(--green);">все рычаги</span></h2>
-      <p class="sub" style="margin-bottom: 48px;">Каждая часть пакета двигает конкретную бизнес-метрику. Не «функции ради функций».</p>
+      <p class="label" style="color: var(--green);">{{ t.solution.label }}</p>
+      <h2 class="title" v-html="t.solution.titleHtml"></h2>
+      <p class="sub" style="margin-bottom: 48px;">{{ t.solution.sub }}</p>
       <div class="grid">
-        <div v-for="(s, i) in solutions" :key="s.title" class="sol anim" :class="'d'+((i%4)+1)">
+        <div v-for="(s, i) in t.solution.items" :key="s.title" class="sol anim" :class="'d'+((i%4)+1)">
           <div class="sol__icon">✓</div>
           <h3 class="sol__title">{{ s.title }}</h3>
           <p class="sol__desc">{{ s.desc }}</p>
           <div class="sol__metric">{{ s.metric }}</div>
         </div>
       </div>
-      <a href="#pricing" class="btn btn-w" style="margin-top: 48px;">Посмотреть тарифы</a>
+      <a href="#pricing" class="btn btn-w" style="margin-top: 48px;">{{ t.solution.cta }}</a>
     </div>
   </section>
 </template>
-
-<script setup>
-const solutions = [
-  { title: 'Лендинг под ваш бренд', desc: 'Продающая посадочная с вашими цветами, шрифтами, доменом. Собирает заявки в ваш CRM или Telegram.', metric: '+CR · +органика' },
-  { title: '2 мобильных приложения', desc: 'iOS (Swift) и Android (Kotlin). Нативные, с WireGuard/Xray. Готовы к ревью в сторах.', metric: '+MAU · +retention' },
-  { title: 'Публикация в 5 витринах', desc: 'App Store, Google Play, RuStore, AppGallery, GetApps. Готовим метаданные, скриншоты, проходим модерацию.', metric: '+охват · валютные подписки' },
-  { title: 'Backend и биллинг', desc: 'Личный кабинет, подписки, автопродления, выдача и ротация ключей, управление нодами, финансы.', metric: '+MRR · −churn' },
-  { title: 'Админ-панель и аналитика', desc: 'MAU, DAU, churn, LTV, выручка по витринам. Управление пользователями, рефандами, промокодами.', metric: 'решения на данных · −CAC' },
-  { title: 'Telegram-бот (три роли)', desc: 'Продажи новым клиентам, поддержка текущим, выдача ключей для тех, кто не хочет приложение.', metric: '+конверсия · −саппорт' },
-  { title: 'Миграция ваших пользователей', desc: 'Выгрузка из старого бота, импорт с сохранением остатков подписки, автоуведомление с новой ссылкой.', metric: '0 потерь · +LTV старых' },
-  { title: 'Деплой на ваши серверы', desc: 'Развернём на вашей инфраструктуре. Документация, обучение команды, 2 недели сопровождения после запуска.', metric: 'страховка от бана' },
-]
-</script>
 
 <style scoped>
 .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }

@@ -1,41 +1,53 @@
+<script setup>
+import { reactive } from 'vue'
+import { useI18n } from '../composables/useI18n'
+const { t } = useI18n()
+const form = reactive({ company: '', users: '', contact: '', message: '' })
+function submit() {
+  const L = t.value.contact
+  const text = `${L.leadHeader}\n\n${L.leadCompany}: ${form.company}\n${L.leadUsers}: ${form.users || '—'}\n${L.leadContact}: ${form.contact}\n\n${form.message || ''}`
+  window.open(`https://t.me/maratiksci?text=${encodeURIComponent(text)}`, '_blank')
+}
+</script>
+
 <template>
   <section id="contact" class="section">
     <div class="container">
       <div class="head">
-        <p class="label">Связаться</p>
-        <h2 class="title">Обсудим ваш запуск</h2>
-        <p class="sub">Заполните форму — ответим в Telegram или на почту в течение 24 часов. Или сразу пишите в мессенджер.</p>
+        <p class="label">{{ t.contact.label }}</p>
+        <h2 class="title">{{ t.contact.title }}</h2>
+        <p class="sub">{{ t.contact.sub }}</p>
       </div>
       <div class="body">
         <form class="form" @submit.prevent="submit">
           <div class="form__row">
             <label class="form__field">
-              <span class="form__lbl">Компания / бот</span>
-              <input v-model="form.company" required type="text" placeholder="Например, «VPN365» или @vpn365bot" />
+              <span class="form__lbl">{{ t.contact.lblCompany }}</span>
+              <input v-model="form.company" required type="text" :placeholder="t.contact.phCompany" />
             </label>
             <label class="form__field">
-              <span class="form__lbl">Размер базы</span>
-              <input v-model="form.users" type="text" placeholder="Например, 8 000 активных" />
+              <span class="form__lbl">{{ t.contact.lblUsers }}</span>
+              <input v-model="form.users" type="text" :placeholder="t.contact.phUsers" />
             </label>
           </div>
           <label class="form__field">
-            <span class="form__lbl">Контакт для связи</span>
-            <input v-model="form.contact" required type="text" placeholder="Telegram / email / телефон" />
+            <span class="form__lbl">{{ t.contact.lblContact }}</span>
+            <input v-model="form.contact" required type="text" :placeholder="t.contact.phContact" />
           </label>
           <label class="form__field">
-            <span class="form__lbl">Что обсудить</span>
-            <textarea v-model="form.message" rows="3" placeholder="Интересующий тариф, вопросы по миграции, сроки"></textarea>
+            <span class="form__lbl">{{ t.contact.lblMessage }}</span>
+            <textarea v-model="form.message" rows="3" :placeholder="t.contact.phMessage"></textarea>
           </label>
-          <button type="submit" class="btn btn-w form__submit">Отправить в Telegram</button>
-          <p class="form__note">Кнопка откроет Telegram с подготовленным сообщением — вам останется нажать «Отправить».</p>
+          <button type="submit" class="btn btn-w form__submit">{{ t.contact.submit }}</button>
+          <p class="form__note">{{ t.contact.submitNote }}</p>
         </form>
         <div class="aside">
           <a href="mailto:ceo@revstre.am" class="contact-card">
-            <span class="contact-card__lbl">Email</span>
+            <span class="contact-card__lbl">{{ t.contact.emailLbl }}</span>
             <span class="contact-card__val">ceo@revstre.am</span>
           </a>
           <a href="https://t.me/maratiksci" target="_blank" class="contact-card">
-            <span class="contact-card__lbl">Telegram</span>
+            <span class="contact-card__lbl">{{ t.contact.telegramLbl }}</span>
             <span class="contact-card__val">@maratiksci</span>
           </a>
         </div>
@@ -43,15 +55,6 @@
     </div>
   </section>
 </template>
-
-<script setup>
-import { reactive } from 'vue'
-const form = reactive({ company: '', users: '', contact: '', message: '' })
-function submit() {
-  const text = `Заявка с сайта RevStream\n\nКомпания / бот: ${form.company}\nРазмер базы: ${form.users || '—'}\nКонтакт: ${form.contact}\n\n${form.message || ''}`
-  window.open(`https://t.me/maratiksci?text=${encodeURIComponent(text)}`, '_blank')
-}
-</script>
 
 <style scoped>
 .head { margin-bottom: 40px; max-width: 560px; }

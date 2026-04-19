@@ -1,17 +1,22 @@
+<script setup>
+import { useI18n } from '../composables/useI18n'
+const { t } = useI18n()
+</script>
+
 <template>
   <section id="objections" class="section">
     <div class="container">
-      <p class="label">Возражения</p>
-      <h2 class="title">«А если…» — давайте сразу</h2>
-      <p class="sub" style="margin-bottom: 48px;">Пять страхов, которые слышим чаще всего. Честно — что с ними на самом деле.</p>
+      <p class="label">{{ t.objections.label }}</p>
+      <h2 class="title">{{ t.objections.title }}</h2>
+      <p class="sub" style="margin-bottom: 48px;">{{ t.objections.sub }}</p>
       <div class="list">
-        <div v-for="(o, i) in items" :key="o.q" class="obj anim" :class="'d'+((i%4)+1)">
+        <div v-for="(o, i) in t.objections.items" :key="o.q" class="obj anim" :class="'d'+((i%4)+1)">
           <div class="obj__q">
-            <span class="obj__tag">Страх</span>
+            <span class="obj__tag">{{ t.objections.fearTag }}</span>
             <p>{{ o.q }}</p>
           </div>
           <div class="obj__a">
-            <span class="obj__tag obj__tag--ok">На самом деле</span>
+            <span class="obj__tag obj__tag--ok">{{ t.objections.okTag }}</span>
             <p v-html="o.a"></p>
           </div>
         </div>
@@ -19,31 +24,6 @@
     </div>
   </section>
 </template>
-
-<script setup>
-const items = [
-  {
-    q: 'Слишком дорого — 300 000 ₽ за пакет',
-    a: 'Сам: 1.2 млн ₽ и 6–9 месяцев. Мы: <strong>300 000 ₽ и 4–8 недель</strong>. Разница окупается первым месяцем рекуррентных подписок в сторе.',
-  },
-  {
-    q: 'Не верю, что будет рост ×3–×10',
-    a: '<strong>BessyVPN</strong> — наша сборка: 1 млн MAU и $300k MRR за 5 месяцев после публикации. Это не маркетинговый слайд — живое приложение в сторах.',
-  },
-  {
-    q: 'Apple или Google забанят приложение',
-    a: 'Проходили ревью в категории VPN десятки раз — знаем формулировки описания и настройки, которые проходят. При бане подаём переделку или переходим на RuStore / AppGallery / GetApps.',
-  },
-  {
-    q: 'Хочу сам попробовать — это же не ракета',
-    a: 'Ок. Пока вы собираете первые iOS и Android билды — конкурент уже в сторе и забирает ваших юзеров. Самостоятельный путь — 6+ месяцев и риск провала.',
-  },
-  {
-    q: 'Всё ещё не понял, что именно я получаю',
-    a: 'Одной фразой: ваш Telegram-бот превращается в <strong>бренд</strong> — с сайтом, двумя приложениями, биллингом, автопродлением и админкой. Юзеры переезжают без потерь. Метрики растут.',
-  },
-]
-</script>
 
 <style scoped>
 .list { display: flex; flex-direction: column; gap: 10px; }

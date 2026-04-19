@@ -1,11 +1,16 @@
+<script setup>
+import { useI18n } from '../composables/useI18n'
+const { t } = useI18n()
+</script>
+
 <template>
   <section id="migration" class="section">
     <div class="container">
-      <p class="label">Миграция</p>
-      <h2 class="title">Как переезжают ваши пользователи</h2>
-      <p class="sub" style="margin-bottom: 48px;">Без потерь. Остатки подписок сохраняются. Все узнают в тот же день.</p>
+      <p class="label">{{ t.migration.label }}</p>
+      <h2 class="title">{{ t.migration.title }}</h2>
+      <p class="sub" style="margin-bottom: 48px;">{{ t.migration.sub }}</p>
       <div class="grid">
-        <div v-for="(s, i) in steps" :key="s.title" class="step anim" :class="'d'+(i+1)">
+        <div v-for="(s, i) in t.migration.steps" :key="s.title" class="step anim" :class="'d'+(i+1)">
           <span class="step__num">{{ String(i+1).padStart(2,'0') }}</span>
           <h3 class="step__title">{{ s.title }}</h3>
           <p class="step__desc">{{ s.desc }}</p>
@@ -14,15 +19,6 @@
     </div>
   </section>
 </template>
-
-<script setup>
-const steps = [
-  { title: 'Выгрузка из старого бота', desc: 'Забираем базу: контакты, активные подписки, остатки дней, выданные ключи. Обычно пара вечеров.' },
-  { title: 'Импорт в новый backend', desc: 'Заливаем данные с сохранением остатков. Никто не теряет оплаченные дни — пересчёт корректный.' },
-  { title: 'Автоуведомление', desc: 'Ваш Telegram-бот рассылает юзерам: «Вот приложение под ваш бренд. Подписка уже перенесена, ничего заново оплачивать не нужно».' },
-  { title: 'Сопровождение перехода', desc: '2 недели держим руку на пульсе: отвечаем на тикеты миграции, помогаем тем, кто не смог перейти, ловим баги.' },
-]
-</script>
 
 <style scoped>
 .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }

@@ -1,7 +1,12 @@
+<script setup>
+import { useI18n } from '../composables/useI18n'
+const { t } = useI18n()
+</script>
+
 <template>
   <footer class="footer">
     <div class="container footer__inner">
-      <span class="footer__copy">© {{ new Date().getFullYear() }} RevStream</span>
+      <span class="footer__copy">© {{ new Date().getFullYear() }} {{ t.footer.copyright }}</span>
       <div class="footer__links">
         <a href="mailto:ceo@revstre.am">ceo@revstre.am</a>
         <a href="https://t.me/maratiksci" target="_blank">Telegram</a>

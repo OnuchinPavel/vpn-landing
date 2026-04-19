@@ -1,39 +1,26 @@
+<script setup>
+import { useI18n } from '../composables/useI18n'
+const { t } = useI18n()
+</script>
+
 <template>
   <section id="examples" class="section" style="background: var(--bg-alt);">
     <div class="container">
-      <p class="label">Кейс</p>
-      <h2 class="title">BessyVPN — наша сборка в сторах</h2>
-      <p class="sub" style="margin-bottom: 32px;">Что происходит после публикации: цифры за первые 5 месяцев.</p>
+      <p class="label">{{ t.examples.label }}</p>
+      <h2 class="title">{{ t.examples.title }}</h2>
+      <p class="sub" style="margin-bottom: 32px;">{{ t.examples.sub }}</p>
       <div class="stats">
-        <div class="stat">
-          <span class="stat__val">1 млн</span>
-          <span class="stat__lbl">MAU</span>
-        </div>
-        <div class="stat">
-          <span class="stat__val">$300k</span>
-          <span class="stat__lbl">MRR</span>
-        </div>
-        <div class="stat">
-          <span class="stat__val">5 мес</span>
-          <span class="stat__lbl">с публикации</span>
-        </div>
-        <div class="stat">
-          <span class="stat__val">×10</span>
-          <span class="stat__lbl">рост выручки</span>
+        <div v-for="s in t.examples.stats" :key="s.lbl" class="stat">
+          <span class="stat__val">{{ s.val }}</span>
+          <span class="stat__lbl">{{ s.lbl }}</span>
         </div>
       </div>
       <div class="grid">
-        <a href="https://apps.apple.com/ru/app/bessyvpn-%D0%B1%D1%8B%D1%81%D1%82%D1%80%D1%8B%D0%B9-%D0%B2%D0%BF%D0%BD/id6755730946" target="_blank" class="card ex">
-          <span class="ex__store">App Store</span>
-          <h3 class="ex__name">BessyVPN — iOS</h3>
-          <p class="ex__desc">Открыть в App Store.</p>
-          <span class="ex__link">Перейти →</span>
-        </a>
-        <a href="https://play.google.com/store/apps/details?id=com.revstream.bessy" target="_blank" class="card ex">
-          <span class="ex__store">Google Play</span>
-          <h3 class="ex__name">BessyVPN — Android</h3>
-          <p class="ex__desc">Открыть в Google Play.</p>
-          <span class="ex__link">Перейти →</span>
+        <a v-for="item in t.examples.items" :key="item.name" :href="item.url" target="_blank" class="card ex">
+          <span class="ex__store">{{ item.store }}</span>
+          <h3 class="ex__name">{{ item.name }}</h3>
+          <p class="ex__desc">{{ item.desc }}</p>
+          <span class="ex__link">{{ item.link }}</span>
         </a>
       </div>
     </div>

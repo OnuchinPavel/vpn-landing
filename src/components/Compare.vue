@@ -1,36 +1,29 @@
+<script setup>
+import { useI18n } from '../composables/useI18n'
+const { t } = useI18n()
+</script>
+
 <template>
   <section id="compare" class="section">
     <div class="container">
-      <p class="label">Сравнение</p>
-      <h2 class="title">Собрать самому или взять готовое</h2>
-      <p class="sub" style="margin-bottom: 48px;">Считайте не только бюджет — считайте месяцы до первой покупки через стор.</p>
+      <p class="label">{{ t.compare.label }}</p>
+      <h2 class="title">{{ t.compare.title }}</h2>
+      <p class="sub" style="margin-bottom: 48px;">{{ t.compare.sub }}</p>
       <div class="cmp">
         <div class="cmp__header">
           <div></div>
-          <div class="cmp__col cmp__col--dim">Собрать самому</div>
-          <div class="cmp__col cmp__col--us">С нами</div>
+          <div class="cmp__col cmp__col--dim">{{ t.compare.colDiy }}</div>
+          <div class="cmp__col cmp__col--us">{{ t.compare.colUs }}</div>
         </div>
-        <div v-for="(r, i) in rows" :key="r.k" class="cmp__row anim" :class="'d'+(i+1)">
+        <div v-for="(r, i) in t.compare.rows" :key="r.k" class="cmp__row anim" :class="'d'+(i+1)">
           <div class="cmp__key">{{ r.k }}</div>
-          <div class="cmp__val cmp__val--dim" data-prefix="Сам">{{ r.self }}</div>
-          <div class="cmp__val cmp__val--us" data-prefix="С нами">{{ r.us }}</div>
+          <div class="cmp__val cmp__val--dim" :data-prefix="t.compare.prefixDiy">{{ r.self }}</div>
+          <div class="cmp__val cmp__val--us" :data-prefix="t.compare.prefixUs">{{ r.us }}</div>
         </div>
       </div>
     </div>
   </section>
 </template>
-
-<script setup>
-const rows = [
-  { k: 'Срок до первой покупки в сторе', self: '6–9 месяцев', us: '4–8 недель' },
-  { k: 'Бюджет', self: 'от 1.2 млн ₽', us: 'от 300 000 ₽' },
-  { k: 'Команда', self: 'iOS + Android + backend + DevOps', us: 'достаточно одного вашего менеджера' },
-  { k: 'Ревью в сторах', self: 'ваш первый раз', us: 'проходили десятки — знаем подводные камни' },
-  { k: 'Миграция пользователей', self: 'пишете сами, тестируете на живых', us: 'готовый сценарий, отлажено' },
-  { k: 'Риск провала', self: 'высокий', us: 'минимальный' },
-  { k: 'Окупаемость', self: 'через 12+ месяцев после публикации', us: 'на 2-й месяц после публикации' },
-]
-</script>
 
 <style scoped>
 .cmp { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }

@@ -1,6 +1,6 @@
-# RevStream — VPN Solutions Landing
+# RevStream — Turnkey VPN Landing
 
-Vue 3 + Vite. Лаконичный лендинг с коммерческим предложением по разработке VPN-сервисов.
+Vue 3 + Vite. Двуязычный лендинг (RU/EN) с оффером turnkey-пакета для операторов VPN-сервисов.
 
 ---
 
@@ -9,8 +9,10 @@ Vue 3 + Vite. Лаконичный лендинг с коммерческим п
 ```bash
 npm install
 npm run dev
-# Открыть http://localhost:5173
+# http://localhost:5173/vpn-landing/
 ```
+
+Vite сконфигурирован с `base: '/vpn-landing/'` — URL всегда под этим префиксом.
 
 ---
 
@@ -20,163 +22,26 @@ npm run dev
 npm run build
 ```
 
-Готовые файлы — в папке `dist/`.
+Готовые файлы — в `dist/`.
 
 ---
 
-## Деплой
+## Деплой на GitHub Pages (используется сейчас)
 
-### 1. VPS / Выделенный сервер
-
-**Загрузить файлы:**
+Ветка `gh-pages`, ручной пуш содержимого `dist/`. GitHub Actions **не используется** — у текущего токена нет `workflow` scope.
 
 ```bash
 npm run build
-scp -r dist/* user@your-server.com:/var/www/vpn-landing/
+cd dist
+git init -b gh-pages -q
+git add -A
+git commit -q -m "Deploy"
+git push -f https://github.com/OnuchinPavel/vpn-landing.git gh-pages
 ```
 
-**Настроить Nginx** — создать `/etc/nginx/sites-available/vpn-landing`:
+Сборка на стороне GitHub Pages ~30 секунд. После обновления юзерам может понадобиться `⌘+Shift+R`, чтобы обойти кеш.
 
-```nginx
-server {
-    listen 80;
-    server_name yourdomain.com;
-    root /var/www/vpn-landing;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-
-    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-
-    gzip on;
-    gzip_types text/plain text/css application/json application/javascript text/xml application/xml text/javascript image/svg+xml;
-}
-```
-
-**Активировать и получить SSL:**
-
-```bash
-sudo ln -s /etc/nginx/sites-available/vpn-landing /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
-
-# SSL
-sudo apt install certbot python3-certbot-nginx -y
-sudo certbot --nginx -d yourdomain.com
-```
-
----
-
-### 2. Docker
-
-**Один контейнер:**
-
-```bash
-docker build -t vpn-landing .
-docker run -d -p 80:80 --name vpn-landing vpn-landing
-```
-
-**Docker Compose** — создать `docker-compose.yml`:
-
-```yaml
-version: '3.8'
-services:
-  web:
-    build: .
-    ports:
-      - "80:80"
-    restart: unless-stopped
-```
-
-```bash
-docker compose up -d
-```
-
-**С SSL через Traefik или Caddy** — добавить reverse proxy перед контейнером.
-
----
-
-### 3. Vercel (бесплатно)
-
-```bash
-npm i -g vercel
-vercel --prod
-```
-
-Vercel автоматически определит Vite-проект. Домен можно привязать в панели Vercel.
-
----
-
-### 4. Netlify (бесплатно)
-
-**Через сайт:**
-1. Загрузить код на GitHub
-2. netlify.com → New Site from Git
-3. Build command: `npm run build`
-4. Publish directory: `dist`
-5. Deploy
-
-**Через CLI:**
-
-```bash
-npm i -g netlify-cli
-netlify deploy --prod --dir=dist
-```
-
----
-
-### 5. GitHub Pages
-
-Добавить `base` в `vite.config.js`:
-
-```js
-export default defineConfig({
-  base: '/your-repo-name/',
-  plugins: [vue()],
-})
-```
-
-Создать `.github/workflows/deploy.yml`:
-
-```yaml
-name: Deploy
-on:
-  push:
-    branches: [main]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: npm ci
-      - run: npm run build
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-```
-
-Включить GitHub Pages → Source: `gh-pages` branch.
-
----
-
-## Кастомизация
-
-| Что изменить | Где |
-|---|---|
-| Контакты (email, telegram) | `src/components/Contact.vue`, `src/components/Footer.vue` |
-| Цены | `src/components/Pricing.vue` — массив `tiers` |
-| Платформы | `src/components/Platforms.vue` — массив `items` |
-| Цвета/шрифты | `src/style.css` — переменные в `:root` |
-| Название | Найти/заменить `RevStream` во всех файлах |
+Живой сайт: **https://onuchinpavel.github.io/vpn-landing/**
 
 ---
 
@@ -184,7 +49,7 @@ jobs:
 
 ```
 vpn-landing/
-├── index.html
+├── index.html              ← meta, OG, Twitter Card (en)
 ├── vite.config.js
 ├── package.json
 ├── Dockerfile
@@ -192,15 +57,77 @@ vpn-landing/
 ├── src/
 │   ├── main.js
 │   ├── App.vue
-│   ├── style.css
+│   ├── style.css           ← дизайн-токены + global-классы
+│   ├── composables/
+│   │   └── useI18n.js      ← детект локали, хранение в localStorage
+│   ├── locales/
+│   │   ├── ru.js           ← все русские строки
+│   │   └── en.js           ← все английские строки
 │   └── components/
-│       ├── Nav.vue
+│       ├── Nav.vue         ← меню + переключатель RU/EN
 │       ├── Hero.vue
-│       ├── Platforms.vue
-│       ├── Payments.vue
-│       ├── Pricing.vue
-│       ├── Process.vue
-│       ├── Contact.vue
+│       ├── Growth.vue      ← рост в цифрах (ARPU, LTV, Global, Insurance)
+│       ├── Pain.vue
+│       ├── Solution.vue    ← «Что входит» + метрика на каждом пункте
+│       ├── Migration.vue
+│       ├── Timeline.vue
+│       ├── Platforms.vue   ← 2 приложения × 5 витрин
+│       ├── Examples.vue    ← кейс BessyVPN (1M MAU / $300k MRR / 5 мес)
+│       ├── Pricing.vue     ← 3 тарифа + блок про dev-аккаунты
+│       ├── Compare.vue     ← сам vs с нами
+│       ├── Objections.vue  ← 5 пар «Страх → На самом деле»
+│       ├── FAQ.vue
+│       ├── Contact.vue     ← форма + Telegram/email
 │       └── Footer.vue
-└── dist/            ← после npm run build
+└── dist/                   ← после npm run build
 ```
+
+---
+
+## Локализация
+
+- Автодетект: `navigator.language` начинается с `ru` → русский, иначе → английский.
+- Пользовательский выбор через переключатель **RU / EN** в Nav сохраняется в `localStorage.locale`.
+- Все строки живут в `src/locales/{ru,en}.js`. Никаких захардкоженных строк в компонентах.
+- `document.title`, `<html lang>` и `<meta name="description">` обновляются при смене локали.
+
+**Чтобы поменять текст:** редактируй только `src/locales/ru.js` и `src/locales/en.js`. Компоненты не трогать.
+
+**Чтобы добавить язык:** создай `src/locales/de.js` (или другой), импортируй в `useI18n.js`, добавь в объект `locales`. Расширь детект в `detectInitial()`.
+
+---
+
+## Кастомизация
+
+| Что изменить | Где |
+|---|---|
+| Контакты (email, telegram) | `Contact.vue`, `Footer.vue` |
+| Все тексты RU | `src/locales/ru.js` |
+| Все тексты EN | `src/locales/en.js` |
+| Цены | `src/locales/{ru,en}.js` → `pricing.tiers` |
+| Цвета/шрифты | `src/style.css` — CSS-переменные в `:root` |
+| OG-теги / meta | `index.html` (статические) + `useI18n.js` (динамические) |
+
+---
+
+## Другие варианты деплоя
+
+### VPS + Nginx
+
+```bash
+npm run build
+scp -r dist/* user@server:/var/www/vpn-landing/
+```
+
+Nginx конфиг — в файле `nginx.conf` в корне.
+
+### Docker
+
+```bash
+docker build -t vpn-landing .
+docker run -d -p 80:80 --name vpn-landing vpn-landing
+```
+
+### Vercel / Netlify
+
+Vite определяется автоматически. Build: `npm run build`, Output: `dist`.

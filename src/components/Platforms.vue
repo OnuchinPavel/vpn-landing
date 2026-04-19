@@ -1,29 +1,31 @@
+<script setup>
+import { useI18n } from '../composables/useI18n'
+const { t } = useI18n()
+</script>
+
 <template>
   <section id="platforms" class="section">
     <div class="container">
-      <p class="label">Приложения и витрины</p>
-      <h2 class="title">2 приложения, 5 магазинов</h2>
-      <p class="sub" style="margin-bottom: 48px;">Нативная разработка — только iOS и Android. Всё остальное — каналы дистрибуции одного Android-билда.</p>
+      <p class="label">{{ t.platforms.label }}</p>
+      <h2 class="title">{{ t.platforms.title }}</h2>
+      <p class="sub" style="margin-bottom: 48px;">{{ t.platforms.sub }}</p>
       <div class="plat">
         <div class="plat__block anim d1">
           <div class="plat__head">
-            <span class="plat__tag">iOS</span>
-            <span class="plat__stack">Swift · StoreKit 2 · WireGuard</span>
+            <span class="plat__tag">{{ t.platforms.ios.tag }}</span>
+            <span class="plat__stack">{{ t.platforms.ios.stack }}</span>
           </div>
           <div class="plat__stores">
-            <div class="store">App Store</div>
+            <div v-for="s in t.platforms.ios.stores" :key="s" class="store">{{ s }}</div>
           </div>
         </div>
         <div class="plat__block anim d2">
           <div class="plat__head">
-            <span class="plat__tag">Android</span>
-            <span class="plat__stack">Kotlin · Play Billing · WireGuard · Xray</span>
+            <span class="plat__tag">{{ t.platforms.android.tag }}</span>
+            <span class="plat__stack">{{ t.platforms.android.stack }}</span>
           </div>
           <div class="plat__stores">
-            <div class="store">Google Play</div>
-            <div class="store">RuStore</div>
-            <div class="store">Huawei AppGallery</div>
-            <div class="store">Xiaomi GetApps</div>
+            <div v-for="s in t.platforms.android.stores" :key="s" class="store">{{ s }}</div>
           </div>
         </div>
       </div>
