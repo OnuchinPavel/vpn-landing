@@ -18,7 +18,16 @@ const { t } = useI18n()
           <strong>{{ m.label }}</strong> {{ m.suffix }}
         </div>
       </div>
-      <div class="hero__actions anim d5">
+      <div class="hero__pipeline anim d5">
+        <span class="hero__pipeline-label">{{ t.hero.pipeline.label }}</span>
+        <div class="hero__pipeline-track">
+          <template v-for="(step, i) in t.hero.pipeline.steps" :key="step">
+            <span class="hero__pipeline-step">{{ step }}</span>
+            <span v-if="i < t.hero.pipeline.steps.length - 1" class="hero__pipeline-arrow">→</span>
+          </template>
+        </div>
+      </div>
+      <div class="hero__actions anim d6">
         <a href="#pricing" class="btn btn-w">{{ t.hero.ctaPricing }}</a>
         <a href="#growth" class="btn btn-o">{{ t.hero.ctaHow }}</a>
       </div>
@@ -56,6 +65,11 @@ const { t } = useI18n()
   padding: 8px 14px; border: 1px solid var(--border); border-radius: 100px;
 }
 .hero__meta-item strong { color: var(--text); font-weight: 600; margin-right: 4px; }
+.hero__pipeline { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; max-width: 720px; }
+.hero__pipeline-label { font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; }
+.hero__pipeline-track { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.hero__pipeline-step { font-size: 0.78rem; font-weight: 500; color: var(--text); padding: 4px 10px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); }
+.hero__pipeline-arrow { color: var(--text-dim); font-size: 0.85rem; }
 .hero__actions { display: flex; gap: 10px; flex-wrap: wrap; }
 @media (max-width: 600px) {
   .hero { padding-top: 110px; padding-bottom: 32px; min-height: auto; }
@@ -66,6 +80,9 @@ const { t } = useI18n()
   .hero__tldr li { font-size: 0.86rem; }
   .hero__meta { margin-bottom: 24px; }
   .hero__meta-item { font-size: 0.74rem; padding: 7px 12px; }
+  .hero__pipeline { margin-bottom: 22px; gap: 8px; }
+  .hero__pipeline-step { font-size: 0.72rem; padding: 3px 8px; }
+  .hero__pipeline-arrow { font-size: 0.75rem; }
   .hero__actions .btn { flex: 1 1 auto; min-width: 0; font-size: 0.82rem; padding: 12px 16px; white-space: normal; text-align: center; line-height: 1.2; }
 }
 </style>

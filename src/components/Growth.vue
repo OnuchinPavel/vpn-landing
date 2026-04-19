@@ -8,7 +8,8 @@ const { t } = useI18n()
     <div class="container">
       <p class="label">{{ t.growth.label }}</p>
       <h2 class="title" v-html="t.growth.titleHtml"></h2>
-      <p class="sub" style="margin-bottom: 48px;">{{ t.growth.sub }}</p>
+      <p class="sub" style="margin-bottom: 32px;">{{ t.growth.sub }}</p>
+      <p class="hook">{{ t.growth.antifragileHook }}</p>
       <div class="grid">
         <div v-for="(m, i) in t.growth.metrics" :key="m.name" class="metric anim" :class="'d'+(i+1)">
           <h3 class="metric__name">{{ m.name }}</h3>
@@ -35,6 +36,12 @@ const { t } = useI18n()
 </template>
 
 <style scoped>
+.hook {
+  font-size: 1.05rem; color: var(--text); font-weight: 600; line-height: 1.5;
+  padding: 18px 22px; margin: 0 0 28px;
+  background: var(--green-dim); border: 1px solid var(--green-border);
+  border-left: 3px solid var(--green); border-radius: var(--radius-lg);
+}
 .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 32px; }
 .metric {
   background: var(--bg-card); border: 1px solid var(--border);
@@ -67,6 +74,7 @@ const { t } = useI18n()
 .proof__text :deep(strong) { color: var(--text); font-weight: 600; }
 
 @media (max-width: 600px) {
+  .hook { font-size: 0.98rem; padding: 16px 18px; margin-bottom: 22px; }
   .grid { grid-template-columns: 1fr; }
   .proof { flex-direction: column; gap: 10px; padding: 18px 20px; }
   .metric { padding: 22px; }

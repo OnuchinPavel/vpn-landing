@@ -35,11 +35,16 @@ export default {
     ],
     ctaPricing: 'See pricing · from $3,500',
     ctaHow: 'How it works',
+    pipeline: {
+      label: 'Pipeline',
+      steps: ['Brief', 'Brand', 'Apps', 'Stores', 'Migration', 'Launch'],
+    },
   },
   growth: {
     label: 'Growth in numbers',
     titleHtml: 'What changes <span style="color: var(--green);">in the business</span>',
     sub: 'Not “features in a box” — metrics your CFO actually looks at.',
+    antifragileHook: 'A Telegram bot ban no longer equals game over.',
     beforeLabel: 'Before',
     afterLabel: 'After',
     metrics: [
@@ -54,7 +59,7 @@ export default {
   pain: {
     label: 'The problem',
     titleHtml: 'Why you hit <span style="color: var(--red);">the ceiling</span>',
-    sub: 'Selling VPN via a Telegram bot is a quick start and a hard plateau. Here’s what breaks first.',
+    sub: 'While you’re reading this, somebody else’s VPN bot is getting banned. The plateau isn’t stability — it’s a countdown. Here’s what breaks first.',
     items: [
       { title: 'The bot is your single point of failure', desc: 'Fear. Telegram can ban the bot without warning. No export, no recovery — the base resets in a minute. Your whole business hangs on one API.' },
       { title: 'Manual payments = a manual business', desc: 'Money. Cards, crypto, transfers — every payment handled by hand. No auto-renewals, no MRR. You make exactly what you collected that month.' },
